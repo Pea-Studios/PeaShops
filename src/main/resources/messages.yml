@@ -1,0 +1,27 @@
+# PeaShops user-facing messages. ampersand color codes work.
+# placeholders: {player} {item} {amount} {price} {currency} {shop} {reason}
+
+prefix: '&8[&aPeaShops&8] '
+
+# ---- transaction outcomes ----
+trade-buy-success: '&aBought &f{amount}x {item} &afor &f{currency}{price}'
+trade-sell-success: '&aSold &f{amount}x {item} &afor &f{currency}{price}'
+trade-failed: '&cTrade failed: {reason}'
+trade-shop-busy: '&cShop is busy, try again in a moment'
+trade-not-enough-funds: '&cYou cannot afford that ({currency}{price})'
+trade-not-enough-stock: '&cShop is out of stock'
+trade-not-enough-space: '&cYou do not have inventory space for that'
+trade-price-changed: '&ePrice changed since you opened the shop. Retry to confirm new price ({currency}{price})'
+
+# ---- creation / management ----
+shop-created: '&aShop created'
+shop-removed: '&aShop removed'
+shop-not-yours: '&cThis shop does not belong to you'
+
+# ---- /shop find ----
+find-no-results: '&7No shops found selling that item'
+find-results-header: '&aShops selling &f{item}&a:'
+
+# ---- generic ----
+no-permission: '&cYou do not have permission'
+unknown-error: '&cSomething went wrong, see console'

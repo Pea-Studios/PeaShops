@@ -1,0 +1,70 @@
+# PeaShops config — defaults are conservative. tune to taste.
+
+# currency symbol shown on signs and in messages. ignored if vault provider has its own.
+currency-symbol: '$'
+
+# ---- transaction safety ----
+transaction:
+  # max time to wait for a per-shop lock before failing the trade with a "shop busy" message.
+  # short on purpose — long waits feel like the server froze.
+  lock-timeout-ms: 250
+
+  # how much a quoted price can drift between gui-open and click-to-confirm before
+  # we abort the trade with a "price changed, retry" message. 0.05 = 5%.
+  max-price-drift: 0.05
+
+# ---- hopper guard ----
+# during a transaction lock we cancel hopper movement into/out of the shop chest
+# to prevent restock dupes. keep enabled unless you know what you're doing.
+hopper-guard:
+  enabled: true
+  # also block hopper-minecart pickup from shop chests (lockette/lwc bypass class).
+  block-hopper-minecart: true
+
+# ---- linked shop networks ----
+# linked shops resolve to a single central chest as their stock source.
+linked-networks:
+  enabled: true
+  # max satellite shops per network. keeps lock contention manageable.
+  max-satellites-per-network: 32
+  # if the central chunk isn't loaded, transactions fail closed with a clear message
+  # instead of silently loading and risking a race.
+  require-central-chunk-loaded: true
+
+# ---- dynamic pricing ----
+dynamic-pricing:
+  enabled: false  # opt-in per server. shop owners enable per-shop in 1.0+.
+  # global floor / ceiling as a multiplier on base price. e.g. 0.5 = price never drops below 50%.
+  global-floor-mult: 0.5
+  global-ceiling-mult: 3.0
+
+# ---- bulk pricing tiers ----
+bulk-tiers:
+  enabled: true
+  # max tiers per shop. format defined per-shop in 1.0+.
+  max-tiers: 5
+
+# ---- /shop find ----
+shop-find:
+  enabled: true
+  # cache results for this many seconds to avoid spam-search.
+  cache-seconds: 30
+  # how many shops a single /shop find can return.
+  result-limit: 50
+  # let players left-click a shop in the find gui to teleport to it.
+  # off by default — most servers want this gated to staff or paid ranks.
+  # players still need peashops.find.tp on top.
+  allow-tp: false
+
+# ---- admin shops ----
+admin-shops:
+  enabled: true
+  # cap per-transaction admin payout to prevent economy drain bugs from being catastrophic.
+  # see chestshop #436 / #465 — historical "infinite stock" plugins drained server accounts.
+  max-payout-per-transaction: 1000000
+
+# ---- analytics ----
+analytics:
+  enabled: true
+  # how many transaction records to keep per shop. older records get pruned.
+  max-records-per-shop: 1000

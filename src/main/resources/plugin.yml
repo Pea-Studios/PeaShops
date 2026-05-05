@@ -1,0 +1,37 @@
+name: PeaShops
+version: '${version}'
+main: gg.peastudios.peashops.PeaShops
+api-version: '1.21'
+description: chestshop with bundle pricing, gui creation, sale mode, info gui, dynamic pricing, bulk tiers
+authors: [Pea Studios]
+softdepend: [Vault]
+
+commands:
+  shop:
+    description: PeaShops main command
+    usage: /<command> [find|info|admin|reload]
+    aliases: [peashop, ps]
+  shopadmin:
+    description: PeaShops admin command
+    usage: /<command> [reload|givebook|stats]
+    aliases: [psa]
+
+permissions:
+  peashops.use:
+    description: Use shop signs to buy/sell
+    default: true
+  peashops.create:
+    description: Create new shop signs
+    default: true
+  peashops.find:
+    description: Use /shop find to discover shops
+    default: true
+  peashops.find.tp:
+    description: Teleport from /shop find GUI (also requires shop-find.allow-tp)
+    default: op
+  peashops.admin:
+    description: Admin shops + admin commands
+    default: op
+  peashops.bypass:
+    description: Bypass shop perms / land trust checks
+    default: op
